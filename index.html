@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OramaTech</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+  </style>
+
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  
+    .animate-fadeIn {
+      animation: fadeIn 1.2s ease-out forwards;
+    }
+  </style>
+
+  <style>
+    @keyframes pulseText {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+  
+    .animate-pulse {
+      animation: pulseText 1.5s ease-in-out infinite;
+    }
+  </style>
+
+  <style>
+    .animate-bounce {
+      animation: bounceDot 1.2s infinite ease-in-out;
+    }
+  
+    @keyframes bounceDot {
+      0%, 100% { transform: translateY(0); opacity: 0.4; }
+      50% { transform: translateY(-8px); opacity: 1; }
+    }
+  </style>
+
+  <style>
+    #main-header {
+      transition: all 0.4s ease;
+    }
+  </style>
+
+  <style>
+    .nav-scrolled #nav-container {
+      transform: scale(0.7) translateX(-40%);
+      opacity: 0.95;
+      border-radius: 9999px;
+    }
+    .nav-scrolled #nav-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+
+  <style>
+    .quote-decor::before {
+      content: "“";
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      font-size: 100px;
+      font-weight: bold;
+      color: rgba(0, 0, 0, 0.07);
+      z-index: 0;
+      pointer-events: none;
+    }
+  </style>
+
+  <style>
+  .highlighted {
+    transform: scale(1.05);
+    outline: 4px solid #d1181e;
+    z-index: 1;
+    transition: all 0.5s ease;
+  }
+</style>
+
+
+</head>
+<body class="bg-white text-black font-sans">
+
+<!-- LOADING SCREEN WITH DOTS -->
+<div id="loader" class="fixed inset-0 z-50 bg-black flex flex-col items-center justify-center transition-opacity duration-[3000ms]">
+  <h1 class="text-white text-4xl font-bold tracking-widest mb-4">Built By Warfighters. With Warfighters. For Warfighters. </h1>
+  <div class="flex gap-2">
+    <span class="w-2 h-2 bg-white rounded-full animate-bounce [animation-delay:0ms]"></span>
+    <span class="w-2 h-2 bg-white rounded-full animate-bounce [animation-delay:200ms]"></span>
+    <span class="w-2 h-2 bg-white rounded-full animate-bounce [animation-delay:400ms]"></span>
+  </div>
+</div>
+
+<header id="main-header" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-in-out transform" hidden>
+  <div id="nav-container" class="transition-transform transition-opacity duration-500 ease-in-out transform will-change-transform scale-100 opacity-100 pointer-events-auto bg-black text-white px-10 py-4 rounded-full shadow-xl flex items-center justify-between w-[90vw] max-w-4xl space-x-12 mx-auto">
+    <a href="/" class="text-lg font-semibold tracking-wider transition-transform duration-200 hover:scale-105 hover:opacity-90">
+      ORAMA
+    </a>
+    <nav class="flex items-center space-x-6 text-sm">
+      <a href="#contact" class="relative group transition">
+        <span class="group-hover:opacity-90">Contact</span>
+        <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-white transition-all duration-100 group-hover:w-full"></span>
+      </a>
+    </nav>
+  </div>
+  <button id="nav-toggle" class="hidden fixed top-4 left-4 bg-black text-white w-14 h-14 rounded-full z-50 focus:outline-none">☰</button>
+</header>
+
+<!-- MAIN CONTENT BLOCK -->
+<section class="min-h-screen flex items-center justify-center px-10 py-24 bg-white border-t border-gray-200">
+  <div class="flex max-w-7xl w-full gap-20 items-center">
+
+    <!-- VERTICAL LINE -->
+    <div class="hidden md:flex flex-col items-center">
+      <div class="w-[2px] h-[80%] bg-gray-300 rounded"></div>
+    </div>
+
+    <!-- TEXT BLOCK -->
+    <div class="flex-[1.2]">
+      <p class="text-[30px] md:text-[30px] leading-[1.6] tracking-tight text-black max-w-3xl">
+        <span style="color: #d1181e; font-weight: 600;">Orama Technologies</span> is redefining tactical training through <span style="color: #d1181e; font-weight: 600;">AI-powered mixed reality</span>. We’re a
+team of veterans, engineers, and technologists building the most immersive combat simulation
+platform on the planet. Our goal is simple: <span style="color: #d1181e; font-weight: 600;"> make training more realistic, more adaptive, and
+more accessible</span> —because lives depend on it.</p>
+      <p class="text-[30px] md:text-[30px] leading-[1.6] tracking-tight text-black max-w-3xl">
+Founded by <span style="color: #d1181e; font-weight: 600;">combat veterans and backed by top defense partners</span>, Orama has been deployed
+across military, law enforcement, and allied organizations <span style="color: #d1181e; font-weight: 600;">to prepare operators for the fight
+ahead</span>, not the war behind.
+      </p>
+    </div>
+
+    <!-- IMAGE BLOCK -->
+    <div class="flex-[0.8] flex justify-center">
+      <img src="{{ url_for('static', filename='img/image_1_1_starter.png') }}"
+           alt="Military Icon"
+           class="w-100 md:w-120 object-contain transition-transform duration-500 ease-in-out hover:scale-110 hover:rotate-1" />
+    </div>
+
+  </div>
+</section>
+
+<section class="pt-36 pb-36 px-6 border-y border-gray-200 bg-white">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-center gap-24">
+
+<!-- LEFT SIDE: centered title + circle -->
+<div class="flex flex-col items-center md:items-center justify-center space-y-8 text-center">
+  <div>
+    <h2 class="text-4xl font-bold">Our Product</h2>
+  </div>
+  <div class="w-48 h-48 md:w-64 md:h-64 flex items-center justify-center border-4 border-black rounded-full">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20" fill="none" viewBox="0 0 24 24" stroke="black">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5v14l11-7z" />
+    </svg>
+  </div>
+</div>
+
+    <!-- RIGHT SIDE -->
+   <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10 text-black max-w-3xl w-full text-base leading-relaxed">
+  <div class="flex flex-col space-y-2">
+    <h4 class="font-bold" style="color: #d1181e;">Fact 1: Live Fire Fidelity, Zero Risk.</h4>
+    <p>
+      With full-body motion capture, 1:1 weapon replicas, and real-time physics in a 360° MR environment, Orama replicates live-fire CQB with none of the danger.
+    </p>
+  </div>
+  <div class="flex flex-col space-y-2">
+    <h4 class="font-bold" style="color: #d1181e;">Fact 2: Adaptive AI Opponents.</h4>
+    <p>
+      Train against near-peer enemies that think and fight like real adversaries, powered by AI that learns and evolves from every session.
+    </p>
+  </div>
+  <div class="flex flex-col space-y-2">
+    <h4 class="font-bold" style="color: #d1181e;">Fact 3: Field-Deployable Anywhere</h4>
+    <p>
+      The entire system fits in a Pelican case. Run missions in a FOB tent, police training center, or SOCOM experiment—no internet required.
+    </p>
+  </div>
+  <div class="flex flex-col space-y-2">
+    <h4 class="font-bold" style="color: #d1181e;">Fact 4: Real-Time AAR.</h4>
+    <p>
+      Our platform captures every round, decision, and movement, generating real-time After-Action Reviews (AARs) to improve readiness instantly.
+    </p>
+  </div>
+
+  <div class="col-span-1 sm:col-span-2 pt-4">
+    <a href="{{ url_for('article') }}" onclick="localStorage.setItem('oramaFromIndex', 'true')" class="text-gray-600 hover:text-black transition font-medium inline-flex items-center gap-1">
+      See More Details →
+    </a>
+  </div>
+</div>
+
+  </div>
+</section>
+
+<!-- QUOTE + FACTS SECTION -->
+<section class="bg-white py-20 px-6 border-t border-gray-200">
+  <div class="max-w-6xl mx-auto flex flex-col items-center space-y-20">
+
+    <!-- QUOTE BLOCK -->
+    <div class="relative bg-white rounded-xl shadow-md p-10 max-w-3xl text-center text-lg leading-relaxed text-black animate-fadeIn border-l-4 border-black/20">
+      <span style="color: #d1181e; font-weight: 600;">Smarter Than Simulation.</span>
+      Orama’s platform uses <span style="color: #d1181e; font-weight: 600;">three integrated AI engines</span> to deliver an unmatched training experience. With Orama, artificial intelligence isn’t just reactive—it’s <span style="color: #d1181e; font-weight: 600;">adaptive, realistic, and mission-driven</span>.
+    </div>
+
+    <!-- FACTS -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
+      <!-- Fact 1 -->
+      <div class="flex flex-col items-center text-center px-6 border-r md:border-gray-300">
+        <h5 class="text-xl md:text-2xl font-semibold text-black">AI Model #1: Computer Vision for Near-Peer Enemies</h5>
+        <p class="text-lg mt-4 text-gray-700">Real-time tracking of player movement and environmental interaction feeds an adversary AI trained on real-world near-peer tactics.</p>
+      </div>
+
+      <!-- Fact 2 -->
+      <div class="flex flex-col items-center text-center px-6 border-r md:border-gray-300">
+        <h5 class="text-xl md:text-2xl font-semibold text-black">AI Model #2: AAR for Soldiers & Drones</h5>
+        <p class="text-lg mt-4 text-gray-700">Our After-Action Review engine analyzes decisions, patterns, and performance to help instructors and trainees instantly identify strengths and weaknesses.</p>
+      </div>
+
+      <!-- Fact 3 -->
+      <div class="flex flex-col items-center text-center px-6">
+        <h5 class="text-xl md:text-2xl font-semibold text-black">AI Model #3: Voice Escalation & De-Escalation</h5>
+        <p class="text-lg mt-4 text-gray-700">Operators interact with NPCs using natural language. Our voice-interaction AI supports escalation/de-escalation and shoot/no-shoot decisions based on tone, command, and context.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE GALLERY SECTION -->
+<section class="bg-white py-20 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <img 
+        src="{{ url_for('static', filename='img/2.png') }}" 
+        alt="Train Better Than Yesterday" 
+        class="gallery-img w-full h-auto rounded-xl shadow-xl transition-transform duration-500 hover:scale-105 cursor-pointer"
+        onclick="openModal(this.src, this.alt)"
+      >
+      <img 
+        src="{{ url_for('static', filename='img/3.png') }}" 
+        alt="Face the unknown. Win Anyway." 
+        class="gallery-img w-full h-auto rounded-xl shadow-xl transition-transform duration-500 hover:scale-105 cursor-pointer"
+        onclick="openModal(this.src, this.alt)"
+      >
+      <img 
+        src="{{ url_for('static', filename='img/4.png') }}" 
+        alt="Train before the threat has a name." 
+        class="gallery-img w-full h-auto rounded-xl shadow-xl transition-transform duration-500 hover:scale-105 cursor-pointer"
+        onclick="openModal(this.src, this.alt)"
+      >
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE MODAL OVERLAY -->
+<div id="image-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-80 flex items-center justify-center">
+  <div class="relative max-w-3xl w-full px-4">
+    <button 
+  onclick="closeModal()" 
+  class="absolute top-4 right-4 text-white text-3xl font-bold bg-black/50 hover:bg-black/70 rounded-full w-10 h-10 flex items-center justify-center transition"
+  aria-label="Close"
+>
+  &times;
+</button>
+
+    <img id="modal-img" src="" alt="" class="w-full h-auto rounded-xl shadow-2xl transition-all duration-300" />
+    <p id="modal-caption" class="mt-4 text-center text-white text-lg"></p>
+  </div>
+</div>
+
+<!-- JS TO CONTROL MODAL -->
+<script>
+  function openModal(src, alt) {
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-img');
+    const caption = document.getElementById('modal-caption');
+    modalImg.src = src;
+    caption.textContent = alt;
+    modal.classList.remove('hidden');
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('image-modal');
+    modal.classList.add('hidden');
+  }
+
+  // Optional: close on outside click
+  document.getElementById('image-modal').addEventListener('click', (e) => {
+    if (e.target.id === 'image-modal') closeModal();
+  });
+</script>
+
+<script>
+  // Modal logic (already present)
+  function openModal(src, alt) {
+    document.getElementById('modal-img').src = src;
+    document.getElementById('modal-caption').textContent = alt;
+    document.getElementById('image-modal').classList.remove('hidden');
+  }
+
+  function closeModal() {
+    document.getElementById('image-modal').classList.add('hidden');
+  }
+
+  document.getElementById('image-modal').addEventListener('click', (e) => {
+    if (e.target.id === 'image-modal') closeModal();
+  });
+
+  // New: Auto-highlight carousel animation
+  const galleryImages = document.querySelectorAll('.gallery-img');
+  let currentIndex = 0;
+
+  function highlightImage(index) {
+    galleryImages.forEach((img, i) => {
+      img.classList.toggle('highlighted', i === index);
+    });
+  }
+
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % galleryImages.length;
+    highlightImage(currentIndex);
+  }, 3000); // every 3 seconds
+</script>
+
+
+
+
+<!-- STORY & MISSION SECTION -->
+<section class="bg-white py-32 px-6 border-t border-gray-200">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+
+    <!-- STORY -->
+    <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-shadow duration-500 animate-fadeIn">
+      <h2 class="text-3xl font-bold mb-4 text-black">Our Story</h2>
+      <p class="text-lg leading-relaxed text-gray-700">
+        Orama was founded by <span style="color: #d1181e; font-weight: 600;">veterans who saw the consequences of outdated training firsthand</span>. In
+modern warfare, seconds and decisions matter—and yet we continue to train with 20th-century
+tools for 21st-century threats. <span style="color: #d1181e; font-weight: 600;"> We knew there had to be a better way. </span>
+What began as a prototype in a garage is now a system trusted by Tier 1 operators, tested with
+the USAF, and showcased at national defense conferences. <span style="color: #d1181e; font-weight: 600;"> We are not just building a product—
+we are changing the way America trains for war. </span>
+      </p>
+    </div>
+
+    <!-- MISSION -->
+    <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-shadow duration-500 animate-fadeIn">
+      <h2 class="text-3xl font-bold mb-4 text-black">Our Mission</h2>
+      <p class="text-lg leading-relaxed text-gray-700">
+<span style="color: #d1181e; font-weight: 600;">To save lives by making warfighters more prepared, more capable, and more resilient </span> through
+immersive, intelligent training systems.
+To close the gap between doctrine and deployment.
+<span style="color: #d1181e; font-weight: 600;">To outpace our adversaries—one simulation at a time</span>.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    const header = document.getElementById('main-header');
+
+    loader.classList.add('opacity-0');
+    setTimeout(() => {
+      loader.style.display = 'none';
+      header.removeAttribute('hidden');
+    }, 1000);
+  });
+
+  // Responsive nav scroll + toggle
+  const header = document.getElementById('main-header');
+  const navContainer = document.getElementById('nav-container');
+  const toggleButton = document.getElementById('nav-toggle');
+
+  let isNavVisible = true;
+
+  window.addEventListener('scroll', () => {
+    // Always ensure transitions are smooth
+    header.classList.add('transition-all', 'duration-700');
+    navContainer.classList.add('transition-all', 'duration-700');
+    if (window.scrollY > 100 && isNavVisible) {
+      navContainer.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
+      toggleButton.classList.remove('hidden');
+      // Move header to left-4 and remove center classes
+      header.classList.remove('left-1/2', '-translate-x-1/2');
+      header.classList.add('left-4');
+      isNavVisible = false;
+    } else if (window.scrollY <= 100 && !isNavVisible) {
+      navContainer.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
+      toggleButton.classList.add('hidden');
+      // Restore header to centered
+      header.classList.remove('left-4');
+      header.classList.add('left-1/2', '-translate-x-1/2');
+      isNavVisible = true;
+    }
+  });
+
+toggleButton.addEventListener('click', () => {
+  window.requestAnimationFrame(() => {
+    header.classList.add('transition-all', 'duration-700');
+    navContainer.classList.add('transition-transform', 'transition-opacity', 'duration-700', 'ease-in-out');
+
+    const isHidden = navContainer.classList.contains('scale-0');
+
+    if (isHidden) {
+      toggleButton.classList.add('hidden');
+      navContainer.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
+      header.classList.remove('left-4');
+      header.classList.add('left-1/2', '-translate-x-1/2');
+      isNavVisible = true;
+    } else {
+      toggleButton.classList.remove('hidden');
+      navContainer.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
+      header.classList.remove('left-1/2', '-translate-x-1/2');
+      header.classList.add('left-4');
+      isNavVisible = false;
+    }
+  });
+});
+</script>
+
+<!-- NEWS SECTION -->
+<section class="bg-white py-32 px-6 border-t border-gray-200">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
+
+    <!-- Title -->
+    <div class="md:col-span-1">
+      <h2 class="text-5xl font-semibold text-black">News</h2>
+    </div>
+
+    <!-- News List -->
+    <div class="md:col-span-2 space-y-6 w-full">
+      <!-- News Item -->
+      <div class="flex justify-between items-center border-b pb-4">
+        <div class="text-xl text-black">News #1</div>
+        <div class="flex items-center space-x-6">
+          <span class="text-gray-500">2025</span>
+          <span class="text-2xl">&rarr;</span>
+        </div>
+      </div>
+      <div class="flex justify-between items-center border-b pb-4">
+        <div class="text-xl text-black">News #2</div>
+        <div class="flex items-center space-x-6">
+          <span class="text-gray-500">2025</span>
+          <span class="text-2xl">&rarr;</span>
+        </div>
+      </div>
+      <div class="flex justify-between items-center border-b pb-4">
+        <div class="text-xl text-black">News #3</div>
+        <div class="flex items-center space-x-6">
+          <span class="text-gray-500">2024</span>
+          <span class="text-2xl">&rarr;</span>
+        </div>
+      </div>
+      <div class="flex justify-between items-center border-b pb-4">
+        <div class="text-xl text-black">News #4</div>
+        <div class="flex items-center space-x-6">
+          <span class="text-gray-500">2024</span>
+          <span class="text-2xl">&rarr;</span>
+        </div>
+      </div>
+      <div class="flex justify-between items-center border-b pb-4">
+        <div class="text-xl text-black">News #5</div>
+        <div class="flex items-center space-x-6">
+          <span class="text-gray-500">2023</span>
+          <span class="text-2xl">&rarr;</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SEEN IN SECTION -->
+<section class="bg-white py-20 px-6 border-t border-gray-200">
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="text-2xl md:text-3xl font-semibold mb-10">Where You Might Have Seen Us</h2>
+    
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 items-center justify-center">
+      <!-- Company 1 -->
+      <div class="flex flex-col items-center space-y-2">
+        <img src="{{ url_for('static', filename='img/marines.png') }}" alt="Company 1" class="w-15 h-15 object-contain">
+      </div>
+
+      <!-- Company 2 -->
+      <div class="flex flex-col items-center space-y-2">
+        <img src="{{ url_for('static', filename='img/american_navy_1.png') }}" alt="Company 2" class="w-15 h-15 object-contain">
+      </div>
+
+      <!-- Company 3 -->
+      <div class="flex flex-col items-center space-y-2">
+        <img src="{{ url_for('static', filename='img/us_army.png') }}" alt="Company 3" class="w-15 h-15 object-contain">
+      </div>
+
+      <!-- Company 4 -->
+      <div class="flex flex-col items-center space-y-2">
+        <img src="{{ url_for('static', filename='img/ncpd.png') }}" alt="Company 4" class="w-15 h-15 object-contain">
+      </div>
+
+      <!-- Company 5 -->
+      <div class="flex flex-col items-center space-y-2">
+        <img src="{{ url_for('static', filename='img/nypd.png') }}" alt="Company 5" class="w-15 h-15 object-contain">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section id="contact" class="bg-white py-32 px-6 border-t border-gray-200">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+
+    <!-- Left: Contact Form -->
+    <div class="bg-gray-50 p-8 rounded-xl shadow-md h-full">
+      <h2 class="text-3xl font-bold mb-6 text-black">Contact Us</h2>
+      <p class="text-base text-gray-700 mb-6">Feel free to reach out with any questions or comments.</p>
+      <form method="POST" action="#" class="space-y-4">
+        <input type="text" placeholder="Name" class="w-full px-4 py-2 border border-gray-300 rounded-md" />
+        <input type="email" placeholder="Email" class="w-full px-4 py-2 border border-gray-300 rounded-md" />
+        <textarea placeholder="Your Message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md"></textarea>
+        <button type="submit" class="px-5 py-2 bg-black text-white rounded-full hover:bg-gray-800 transition text-sm">Send Message</button>
+      </form>
+    </div>
+
+    <!-- Right: Book a Demo -->
+    <div class="p-8 rounded-xl shadow-md h-full border-l border-gray-200">
+      <div>
+        <!-- Icon + Title -->
+        <div class="mb-4 flex items-center gap-3">
+          <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 5v14l11-7z" />
+          </svg>
+          <h2 class="text-3xl font-bold text-black">Book a Demo</h2>
+        </div>
+        <p class="text-base text-gray-700 mb-6">Want to see ORAMA in action? Choose a time that works best for you.</p>
+
+        <!-- Calendly Embed -->
+        <div class="calendly-inline-widget w-full" data-url="https://calendly.com/kburdiuzha-college/demo" style="min-width:320px;height:500px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-gray-200 py-20 px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-center md:justify-between gap-12 text-center md:text-left">
+      
+      <!-- Icon -->
+      <div class="flex justify-center md:justify-start">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Engineer Icon" class="w-32 h-auto" />
+      </div>
+
+      <!-- Office & Contact -->
+      <div class="space-y-8 text-center md:text-left">
+        <div>
+          <h4 class="font-semibold uppercase text-sm text-black tracking-widest">Office</h4>
+          <p class="mt-2 text-black">15 Somwhere Over the Rainbow<br/>00000 Someplace</p>
+        </div>
+        <div>
+          <h4 class="font-semibold uppercase text-sm text-black tracking-widest">Contact</h4>
+          <p class="mt-2 text-black">(123) 456–7890<br/>hello@try.com</p>
+        </div>
+      </div>
+
+      <!-- Social -->
+      <div class="text-center md:text-left">
+        <h4 class="font-semibold uppercase text-sm text-black tracking-widest">Social</h4>
+        <p class="mt-2 text-black">
+          <a href="#" class="hover:underline">LinkedIn</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</body>
+</html>
